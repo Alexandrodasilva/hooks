@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import PageTitle from '../../components/layout/PageTitle'
+import SectionTitle from '../../components/layout/SectionTitle';
 
 function calculaFat(num){
     const n = parseInt(num)
-    if( n === -1) return
-    if(n ===1) return 1;
+    if( n < 0) return -1;
     if(n === 0) return 1;
     return calculaFat(n -1)*n;
 }
@@ -16,12 +16,20 @@ const UseEffect = (props) => {
     useEffect(function(){
         setFatorial(calculaFat(number))
     }, [number])
+    
+    useEffect(function(){
+        if(fatorial > 1000000){
+            document.title = "eita!!!"
+        }
+    }, [fatorial])
+
     return (
         <div className="UseEffect">
             <PageTitle
                 title="Hook UseEffect"
                 subtitle="Permite executar efeitos colaterais em componentes funcionais!"
             />
+            <SectionTitle title="Exercício 01"></SectionTitle>
             <div className="center">
                 <div>
                     <span className="text">Fatorial: </span>
@@ -31,6 +39,10 @@ const UseEffect = (props) => {
                     value={number}
                     onChange={e => setNumber(e.target.value)}
                 />
+            </div>
+            <SectionTitle title="Exercício 02"></SectionTitle>
+            <div className="center">
+
             </div>
         </div>
     )
