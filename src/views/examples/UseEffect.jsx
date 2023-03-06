@@ -8,20 +8,34 @@ function calculaFat(num){
     if(n === 0) return 1;
     return calculaFat(n -1)*n;
 }
+function calcularParImpar(num){
+    const n = parseInt(num)
+    if(n % 2 == 0 ){
+        return 1
+    }else{
+        return -1
+    }
+}
 
 const UseEffect = (props) => {
-    const [number, setNumber] = useState(1);
-    const [fatorial, setFatorial] = useState(0)
+    const [number, setNumber] = useState(0);
+    const [fatorial, setFatorial] = useState(0);
+    const [parImpar, setParImpar] = useState(0);
 
     useEffect(function(){
         setFatorial(calculaFat(number))
     }, [number])
     
     useEffect(function(){
-        if(fatorial > 1000000){
-            document.title = "eita!!!"
+        if(fatorial > 1000){
+            document.title = `${number}`
         }
     }, [fatorial])
+
+
+    useEffect(function(){
+        setParImpar(calcularParImpar(number))
+    }, [number])
 
     return (
         <div className="UseEffect">
@@ -42,7 +56,10 @@ const UseEffect = (props) => {
             </div>
             <SectionTitle title="Exercício 02"></SectionTitle>
             <div className="center">
-
+                <div>
+                    <span className='text'>Status:</span>
+                    <span className='text red'>{parImpar === 1 ? "Par" : "Impar"}</span>
+                </div>
             </div>
         </div>
     )
