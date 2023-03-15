@@ -4,16 +4,19 @@ import { BrowserRouter as Router } from  'react-router-dom'
 
 import Menu from '../components/layout/Menu'
 import Content from '../components/layout/Content'
+import  DataContext, {data}  from '../data/dataContext'
 
 const App = props => {
 
     return (
-                <div className="App">
-                    <Router>
-                        <Menu />
-                        <Content />
-                    </Router>
-                </div>
+        <DataContext.Provider value={data}> 
+            <div className="App">
+                <Router>
+                    <Menu />
+                    <Content />
+                </Router>
+            </div>
+        </DataContext.Provider>
     )
 }
 
